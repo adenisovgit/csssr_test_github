@@ -1,6 +1,7 @@
 # 
 Test task for CSSSR development company
-github issues explorer
+
+Github issues explorer
 
 ### Install
 
@@ -13,4 +14,4 @@ $ make install
 ```sh
 $ make start
 ```
-then application will be alailable at http://localhost:7700
+then application will be available at http://localhost:7700
