@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 import logger from './loggermiddleware';
-import reducers, { actions } from './reducers';
+import reducers from './reducers';
 import App from './components/app';
 
 import './i18n';
@@ -12,13 +12,10 @@ import './i18n';
 export default () => {
   const store = configureStore({
     reducer: reducers,
-    middleware: [...getDefaultMiddleware(), logger],
-    // preloadedState: {
-    // },
+    middleware: [...getDefaultMiddleware()],
   });
 
-
-  document.title = 'React/Redux boilerplate';
+  document.title = 'Github explorer';
   render(
     <Provider store={store}>
       <App />

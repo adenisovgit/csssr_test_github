@@ -3,7 +3,16 @@
     "translation": {
       "cancel": "Cancel",
       "no": "No",
-      "yes": "Yes"
+      "yes": "Yes",
+      "usersearch":"User search",
+      "search":"Search",
+      "requeststart": "Request started",
+      "requestsuccess": "Request complete",
+      "requestfailure": "Request failed",
+      "repo": "Repository",
+      "user": "Username",
+      "userfound": "User found, repositories loaded",
+      "usernotfound": "User not found"
     }
   },
   "ru": {
