@@ -3,7 +3,7 @@ import connect from '../connect';
 
 import Navbar from './navbar';
 import Notification from '../features/ui/notification';
-import Users from '../features/users/users';
+import Issues from '../features/issues/issues';
 
 const mapStateToProps = ({ ui }) => {
   const props = { ui };
@@ -18,12 +18,7 @@ class App extends React.PureComponent {
       <>
         <Navbar />
         <div className="container-fluid">
-          <div className="row">
-            <Users />
-            <main role="main" className="col-md-8 ml-sm-auto col-lg-8 pt-3 px-4">
-              Здесь будет город сад
-            </main>
-          </div>
+          <Issues />
         </div>
         <Notification show={notificationShow} type={notificationType} message={message} />
       </>

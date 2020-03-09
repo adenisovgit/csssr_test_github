@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 
 import uiReducer, { actions as uiActions } from '../features/ui/uiSlice.js';
-import usersReducer, { actions as usersActions } from '../features/users/userSlice';
+import issuesReducer, { actions as issuesActions } from '../features/issues/issuesSlice';
 
 export default combineReducers({
   ui: uiReducer,
-  users: usersReducer,
+  issues: issuesReducer,
 });
 
 
 export const actions = {
   ...uiActions,
-  ...usersActions,
+  ...issuesActions,
 };

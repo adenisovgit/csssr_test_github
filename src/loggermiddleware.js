@@ -1,6 +1,3 @@
-/**
- * Логирует все экшены и состояния после того, как они будут отправлены.
- */
 const logger = (store) => (next) => (action) => {
   console.group(action.type);
   console.info('dispatching', action);

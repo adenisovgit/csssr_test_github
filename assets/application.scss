@@ -32,3 +32,14 @@
     word-wrap: break-word;
     max-width: 100%;
 }
+
+.max-lines {
+   word-break: break-word;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   line-height: 1.5em; /* fallback */
+   max-height: 6em; /* fallback */
+   -webkit-line-clamp: 4; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}

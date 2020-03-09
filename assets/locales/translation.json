@@ -12,7 +12,9 @@
       "repo": "Repository",
       "user": "Username",
       "userfound": "User found, repositories loaded",
-      "usernotfound": "User not found"
+      "usernotfound": "User not found",
+      "lookingforrepos": "Looking for repos for user {{userName}}",
+      "issuesperpage": "Issues per page"
     }
   },
   "ru": {

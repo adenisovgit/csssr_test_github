@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-import { handleUserSearch } from '../features/users/userSlice';
+import { actions as issuesActions, handleIssuesSearch } from '../features/issues/issuesSlice';
 import { actions as uiActions } from '../features/ui/uiSlice';
 import routes from '../routes';
 
@@ -16,15 +16,20 @@ const Navbar = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const [state, setState] = useState({ userName: '', repos: [], isFetch: false });
-  const onSubmit = (value) => {
+  const onSubmit = (values) => {
+    if (values.user === '' || values.repo === '') return;
     reset();
-    dispatch(handleUserSearch(value));
+    dispatch(issuesActions.setUserAndRepo(values));
+    dispatch(handleIssuesSearch());
   };
 
-  const handleUserBlur = async ({ currentTarget: { value } }) => {
+  const handleUserBlur = async ({ currentTarget: { value: userName } }) => {
+    dispatch(uiActions
+      .setNotification({ notificationType: 'secondary', notificationShow: true, message: t('lookingforrepos', { userName }) }));
+
     setState(() => ({ userName: '', repos: [], isFetch: false }));
     try {
-      const { data: user } = await axios.get(routes.getUser(value));
+      const { data: user } = await axios.get(routes.getUser(userName));
       const { data: repos } = await axios.get(user.repos_url);
       const reposNames = repos.map((el) => el.name);
       setState((prevState) => ({ ...prevState, userName: user.login, repos: reposNames }));
@@ -56,7 +61,7 @@ const Navbar = () => {
             type="text"
             placeholder={t('user')}
             aria-label="user name"
-            name="userStr"
+            name="user"
             onBlur={handleUserBlur}
             ref={register({ required: true })}
           />
@@ -66,13 +71,14 @@ const Navbar = () => {
             list="languages"
             placeholder={t('repo')}
             aria-label="repository name"
-            name="repoStr"
+            name="repo"
             ref={register({ required: true })}
           />
           {makeDatalist()}
           <button className="btn btn-outline-success my-2 my-sm-0" type="button" onClick={handleSubmit(onSubmit)}>
             {t('search')}
           </button>
+          <input type="submit" style={{ display: 'none' }} />
         </form>
       </div>
     </nav>
