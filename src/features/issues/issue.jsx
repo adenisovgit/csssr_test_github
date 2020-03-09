@@ -20,7 +20,7 @@ const Issue = (props) => {
       <div className="row justify-content-md-center">
         <div className="col col-lg-2">
           <a href={`https://github.com/${userLogin}`} target="_blank" rel="noopener noreferrer">
-            <img className="avatar" src={avatarURL} alt="" />
+            <img className="img-fluid rounded" src={avatarURL} alt="" />
             <div className="username">{userLogin}</div>
           </a>
         </div>
