@@ -3,7 +3,7 @@ import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 
 import connect from '../../connect';
-import Paginator from '../ui/paginator';
+import ControlPanel from '../ui/controlpanel';
 import Issue from './issue';
 
 const mapStateToProps = ({ issues }) => ({ issues });
@@ -43,9 +43,10 @@ class Issues extends React.PureComponent {
       userLogin: issue.user.login,
       avatarURL: issue.user.avatar_url,
     }));
+
     return (
       <main role="main" className="col-md-12 ml-sm-auto col-lg-12 pt-3 px-4">
-        <Paginator
+        <ControlPanel
           perPage={perPage}
           issuesState={issuesState}
           currentPage={currentPage}

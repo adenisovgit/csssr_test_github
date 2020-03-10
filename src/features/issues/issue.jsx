@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 
+import User from '../ui/user';
 
 const Issue = (props) => {
   const {
@@ -18,12 +19,7 @@ const Issue = (props) => {
   return (
     <div className="container">
       <div className="row justify-content-md-center">
-        <div className="col col-lg-2">
-          <a href={`https://github.com/${userLogin}`} target="_blank" rel="noopener noreferrer">
-            <img className="img-fluid rounded" src={avatarURL} alt="" />
-            <div className="username">{userLogin}</div>
-          </a>
-        </div>
+        <User userLogin={userLogin} avatarURL={avatarURL} />
         <div className="col col-lg-3">
           <span>ID: {id} </span>
           <span className={stateClass}>{state}</span>
@@ -38,6 +34,5 @@ const Issue = (props) => {
     </div>
   );
 };
-
 
 export default Issue;
