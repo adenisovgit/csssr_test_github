@@ -38,6 +38,7 @@
    -webkit-box-orient: vertical;
 }
 
-.btn:focus {
-  outline: none !important;
+.btn:focus, .btn:active:focus, .btn.active:focus{
+    outline:none;
+    box-shadow:none;
 }
