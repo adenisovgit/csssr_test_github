@@ -15,7 +15,7 @@ class Issues extends React.PureComponent {
       issues, setCurrentPage, setPerPage, handleIssuesSearch, setIssuesState,
     } = this.props;
     const {
-      perPage, currentPage, data: loadedIssues, issuesState,
+      perPage, currentPage, data: loadedIssues, issuesState, user, repo,
     } = issues;
 
     const handleChangePage = (newPage) => {
@@ -33,6 +33,7 @@ class Issues extends React.PureComponent {
       handleIssuesSearch();
     };
 
+    const disabledControl = user === '' || repo === '';
     const issuesData = loadedIssues.map((issue) => ({
       id: issue.id,
       html: issue.html_url,
@@ -53,6 +54,7 @@ class Issues extends React.PureComponent {
           handleChangePage={handleChangePage}
           handleChangePerPage={handleChangePerPage}
           handleChangeIssuesState={handleChangeIssuesState}
+          disabled={disabledControl}
         />
         <ListGroup as="ul">
           {issuesData.map((issue) => (

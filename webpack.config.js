@@ -2,7 +2,8 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
 
 module.exports = (env) => {
   const isProduction = env.production === 'prod';
@@ -10,6 +11,35 @@ module.exports = (env) => {
 
   const config = {
     mode: isProduction ? 'production' : 'development',
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true,
+          terserOptions: {
+            parse: {
+              ecma: 9,
+            },
+            compress: {
+              ecma: 5,
+              warnings: false,
+              comparisons: false,
+              inline: 2,
+            },
+            mangle: {
+              safari10: true,
+            },
+            output: {
+              ecma: 5,
+              comments: false,
+              ascii_only: true,
+            },
+            // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+          },
+        }),
+      ],
+    },
     entry: [
       `${__dirname}/src/index.js`,
     ],
@@ -18,7 +48,6 @@ module.exports = (env) => {
     },
     output: {
       path: `${__dirname}/dist/public`,
-      publicPath: '/',
     },
     devtool: isProduction ? '' : 'inline-source-map',
     module: {
@@ -60,7 +89,6 @@ module.exports = (env) => {
   if (isProduction) {
     config.plugins.push(
       // @ts-ignore
-      new UglifyJSPlugin(),
       new CopyWebpackPlugin([{
         from: `${__dirname}/assets`,
       }]),
